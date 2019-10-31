@@ -5,7 +5,6 @@ class Personas {
 	public $id;
 	public $nombre;
 	public $direccion;
-	public $fechaCreacion;
 	public $telefono;
 	
 	public static function getBySql($sql) {
@@ -101,7 +100,7 @@ class Personas {
 			$statement->execute();
 			
 			// Bind variable to prepared statement
-			$statement->bind_result($id, $nombre, $direccion, $fechaCreacion, $telefono);
+			$statement->bind_result($id, $nombre, $direccion, $telefono);
 			
 			// Populate bind variables
 			$statement->fetch();
@@ -118,7 +117,6 @@ class Personas {
 		$object->id = $id;
 		$object->nombre = $nombre;
 		$object->direccion = $direccion;
-		$object->fechaCreacion = $fechaCreacion;
 		$object->telefono = $telefono;
 		return $object;
 	}

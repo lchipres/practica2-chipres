@@ -1,0 +1,43 @@
+(function() {
+  var Promise, app, base, config, cwd, env, os, pkg, ref;
+
+  require("./util/fs");
+
+  os = require("os");
+
+  cwd = require("./cwd");
+
+  Promise = require("bluebird");
+
+  Error.stackTraceLimit = 2e308;
+
+  pkg = require("../../root");
+
+  try {
+    app = require("electron").app;
+    app.commandLine.appendSwitch("disable-renderer-backgrounding", true);
+    app.commandLine.appendSwitch("ignore-certificate-errors", true);
+    app.commandLine.appendSwitch("use-fake-ui-for-media-stream");
+    app.commandLine.appendSwitch("use-fake-device-for-media-stream");
+    app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
+    app.commandLine.appendSwitch("disable-site-isolation-trials");
+    if (os.platform() === "linux") {
+      app.disableHardwareAcceleration();
+    }
+  } catch (error) {}
+
+  env = (base = process.env)["CYPRESS_ENV"] || (base["CYPRESS_ENV"] = (ref = pkg.env) != null ? ref : "development");
+
+  config = {
+    cancellation: true
+  };
+
+  if (env === "dev") {
+    config.longStackTraces = true;
+  }
+
+  Promise.config(config);
+
+  module.exports = env;
+
+}).call(this);

@@ -1,6 +1,6 @@
 <?php
 //Definición de variable global
-$url="https://localhost-practica2-chipres.paiza-user.cloud/~ubuntu/practica2-chipres/";
+$url="http://localhost/practica2-chipres-master/";
 
 //Definir el código de caracteres
 header('Content-Type: text/html; charset=utf-8');
