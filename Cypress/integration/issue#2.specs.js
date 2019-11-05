@@ -1,5 +1,5 @@
 describe ('Issue #2: Agrega campo telefono y directorio', function () {
-    it('Prueba de cantalogo funcional "Catalog de personas"', function () {
+    it('Prueba de catalogo funcional "Catalogo de personas"', function () {
         cy.visit('http://educ.ddns.net:88/pruebas-cypress/')
     })
 
